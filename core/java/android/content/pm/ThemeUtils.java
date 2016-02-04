@@ -622,8 +622,13 @@ public class ThemeUtils {
             List<String> allComponents = getAllComponents();
             for(String component : allComponents) {
                 int index = c.getColumnIndex(component);
-                if (c.getInt(index) == 1) {
-                    supportedComponents.add(component);
+                if (index != -1) {
+                    if (c.getInt(index) == 1) {
+                        supportedComponents.add(component);
+                    }
+                }
+                else {
+                    Log.w(TAG, "Column " + component + " does not exists");
                 }
             }
         }
