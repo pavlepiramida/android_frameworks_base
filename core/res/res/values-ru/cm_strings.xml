@@ -85,6 +85,8 @@
   <string name="permdesc_readThemesDesc">Приложение сможет считывать темы оформления и определять, какая тема сейчас применена.</string>
   <string name="permlab_writeThemes">Изменение тем</string>
   <string name="permdesc_writeThemesDesc">Приложение сможет осуществлять установку новых тем оформления и изменять текущую тему.</string>
+  <string name="permlab_fakePackageSignature">Подделка подписи APK</string>
+  <string name="permdesc_fakePackageSignature">Приложение сможет выдавать себя за другое приложение и обманывать системы безопасности.</string>
   <string name="permlab_setKeyguardWallpaper">Установка обоев экрана блокировки</string>
   <string name="permdesc_setKeyguardWallpaper">Приложение сможет изменять обои экрана блокировки устройства.</string>
   <string name="permlab_useHardwareFramework">Взаимодействие с оборудованием</string>
