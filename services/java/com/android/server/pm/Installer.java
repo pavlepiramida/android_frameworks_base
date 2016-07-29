@@ -227,7 +227,7 @@ public final class Installer {
                             checkPoller();
                         }
                     }
-                    final long timeToWait = startWaitTime - System.nanoTime() + 100000000000L;
+                    final long timeToWait = startWaitTime - System.nanoTime() + 600000000000L;
                     if (timeToWait > 0) {
                         mResponses.wait(100000);
                     } else {
