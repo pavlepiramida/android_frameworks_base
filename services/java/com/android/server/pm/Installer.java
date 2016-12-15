@@ -227,13 +227,13 @@ public final class Installer {
                             checkPoller();
                         }
                     }
-                    final long timeToWait = startWaitTime - System.nanoTime() + 100000000000L;
-                    if (timeToWait > 0) {
+                  //  final long timeToWait = startWaitTime - System.nanoTime() + 100000000000L;
+                  //  if (timeToWait > 0) {
                         mResponses.wait(100000);
-                    } else {
-                        Slog.e(TAG, "timeout wating for response");
-                        break;
-                    }
+                  //  } else {
+                    //    Slog.e(TAG, "timeout wating for response");
+                 //	       break;
+                 //   }
                 }
             }
         } catch (InterruptedException e) {
