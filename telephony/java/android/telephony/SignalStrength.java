@@ -280,11 +280,11 @@ public class SignalStrength implements Parcelable {
     public SignalStrength(Parcel in) {
         if (DBG) log("Size of signalstrength parcel:" + in.dataSize());
 
-        mGsmSignalStrength = in.readInt();
+        mGsmSignalStrength = in.readInt() & 0xff;
         mGsmBitErrorRate = in.readInt();
-        mCdmaDbm = in.readInt();
+        mCdmaDbm = in.readInt() & 0xff;
         mCdmaEcio = in.readInt();
-        mEvdoDbm = in.readInt();
+        mEvdoDbm = in.readInt() & 0xff;
         mEvdoEcio = in.readInt();
         mEvdoSnr = in.readInt();
         mLteSignalStrength = in.readInt();
@@ -292,8 +292,18 @@ public class SignalStrength implements Parcelable {
         mLteRsrq = in.readInt();
         mLteRssnr = in.readInt();
         mLteCqi = in.readInt();
-        mTdScdmaRscp = in.readInt();
+		mTdScdmaRscp = INVALID;
         isGsm = (in.readInt() != 0);
+
+		if (mLteSignalStrength == 99) {
+		    mLteRsrp = SignalStrength.INVALID;
+		    mLteRsrq = SignalStrength.INVALID;
+		    mLteRssnr = SignalStrength.INVALID;
+		    mLteCqi = SignalStrength.INVALID;
+		}
+		else {
+			mLteSignalStrength &= 0xff;
+		}
     }
 
     /**
@@ -305,25 +315,7 @@ public class SignalStrength implements Parcelable {
      */
     public static SignalStrength makeSignalStrengthFromRilParcel(Parcel in) {
         if (DBG) log("Size of signalstrength parcel:" + in.dataSize());
-
-        SignalStrength ss = new SignalStrength();
-        ss.mGsmSignalStrength = in.readInt();
-        ss.mGsmBitErrorRate = in.readInt();
-        ss.mCdmaDbm = in.readInt();
-        ss.mCdmaEcio = in.readInt();
-        ss.mEvdoDbm = in.readInt();
-        ss.mEvdoEcio = in.readInt();
-        ss.mEvdoSnr = in.readInt();
-        ss.mLteSignalStrength = in.readInt();
-        ss.mLteRsrp = in.readInt();
-        ss.mLteRsrq = in.readInt();
-        ss.mLteRssnr = in.readInt();
-        ss.mLteCqi = in.readInt();
-        // ignore the timingAdvance field since
-        // the frameworks is not utilizing this field
-        in.readInt();
-        ss.mTdScdmaRscp = in.readInt();
-        return ss;
+		return new SignalStrength(in);
     }
 
     /**
